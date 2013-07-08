@@ -15,7 +15,10 @@ D_VARS="$D_VARS -Dfenixframework.keepAliveTime=60000"
 D_VARS="$D_VARS -Dfenixframework.messagingJgroupsFile=jgroups.xml"
 
 #jgroups IPv4
-D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true"
+D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr=127.0.0.1"
+
+#log4j
+D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/log4j.properties"
 
 #class path
 CP="$TARGET_DIR/fenix-framework-app-1.0.jar"

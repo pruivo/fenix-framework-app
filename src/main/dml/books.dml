@@ -27,7 +27,7 @@ relation DRWithAuthors {
     .pt.ist.fenixframework.DomainRoot playsRole parent;
     Author playsRole theAuthors {
         multiplicity *;
-        indexed by id #(*);
+        indexed by id;
     }
 }
 
