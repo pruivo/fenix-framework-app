@@ -53,7 +53,7 @@ public class ServerMain {
             return;
         }
         for (int i = 0; i < NUMBER_ELEMENTS; i++) {
-            domainRoot.addTheAuthors(new Author(i, i));
+            domainRoot.addTheAuthors(Author.createAuthorGroupedById(i, i));
         }
     }
 
@@ -64,7 +64,7 @@ public class ServerMain {
             return;
         }
         for (int i = 0; i < NUMBER_ELEMENTS; i++) {
-            domainRoot.addTheBooks(new Book(i, i));
+            domainRoot.addTheBooks(Book.createBookGroupedById(i, i));
         }
     }
 

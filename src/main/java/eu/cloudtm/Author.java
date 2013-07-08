@@ -22,9 +22,9 @@ public class Author extends Author_Base {
         setAge(age);
     }
 
-    public static Author createAuthorGroupedByAge(int id, int age) {
+    public static Author createAuthorGroupedById(int id, int age) {
         LocalityHints localityHints = new LocalityHints();
-        localityHints.addHint(Constants.GROUP_ID, String.valueOf(age));
+        localityHints.addHint(Constants.GROUP_ID, String.valueOf(id));
         return new Author(localityHints, id, age);
     }
 

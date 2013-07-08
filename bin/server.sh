@@ -13,6 +13,7 @@ D_VARS="$D_VARS -Dfenixframework.coreThreadPoolSize=1"
 D_VARS="$D_VARS -Dfenixframework.maxThreadPoolSize=2"
 D_VARS="$D_VARS -Dfenixframework.keepAliveTime=60000"
 D_VARS="$D_VARS -Dfenixframework.messagingJgroupsFile=jgroups.xml"
+D_VARS="$D_VARS -Dfenixframework.useGrouping=true"
 
 #jgroups IPv4
 D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr=127.0.0.1"

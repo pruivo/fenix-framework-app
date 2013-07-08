@@ -7,7 +7,11 @@ package eu.cloudtm;
 public class Book extends Book_Base {
 
     public Book(int id, double price) {
-        super();
+        this(null, id, price);
+    }
+
+    public Book(LocalityHints hints, int id, double price) {
+        super(hints);
         setId(id);
         setPrice(price);
     }
@@ -15,5 +19,11 @@ public class Book extends Book_Base {
     @Override
     public String toString() {
         return "Book " + getId();
+    }
+
+    public static Book createBookGroupedById(int id, double price) {
+        LocalityHints localityHints = new LocalityHints();
+        localityHints.addHint(Constants.GROUP_ID, String.valueOf(id));
+        return new Book(localityHints, id, price);
     }
 }

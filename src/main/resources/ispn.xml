@@ -40,11 +40,13 @@
                 autoCommit="true">
             <recovery enabled="false"/>
         </transaction>
-        <clustering mode="r">
+        <clustering mode="d">
+            <hash
+                    numOwners="1" />
             <sync
                     replTimeout="15000"/>
             <stateTransfer
-                    fetchInMemoryState="false"
+                    fetchInMemoryState="true"
                     chunkSize="100"
                     timeout="240000"/>
         </clustering>
