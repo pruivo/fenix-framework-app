@@ -21,6 +21,9 @@ D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr=127.0.0.1"
 #log4j
 D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/log4j.properties"
 
+#Jprofiler
+#JP_AGENT="-agentpath:/opt/jprofiler/bin/linux-x64/libjprofilerti.so"
+
 #class path
 CP="$TARGET_DIR/fenix-framework-app-1.0.jar"
 
@@ -28,6 +31,6 @@ for jar in `ls ${TARGET_DIR}/dependency/*.jar`; do
     CP="$CP:$jar";
 done
 
-CMD="java $D_VARS -cp $CP $CLASS"
-echo $CMD
+CMD="java $JP_AGENT $D_VARS -cp $CP $CLASS"
+#echo $CMD
 eval $CMD

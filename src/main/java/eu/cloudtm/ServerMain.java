@@ -4,6 +4,7 @@ import org.apache.log4j.Level;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.DomainRoot;
 import pt.ist.fenixframework.FenixFramework;
+import pt.ist.fenixframework.messaging.RequestProcessor;
 
 import java.io.Console;
 
@@ -34,11 +35,12 @@ public class ServerMain {
 
     private static void populateIfNeeded() {
         //a little hack to make the populate faster
-        getLogger("pt.ist.fenixframework").setLevel(Level.WARN);
+        Level old = getLogger("pt.ist.fenixframework").getLevel();
+        getLogger("pt.ist.fenixframework").setLevel(Level.ERROR);
         populateAuthors();
         populateBooks();
         populatePublishers();
-        getLogger("pt.ist.fenixframework").setLevel(Level.TRACE);
+        getLogger("pt.ist.fenixframework").setLevel(old);
     }
 
     @Atomic

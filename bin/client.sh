@@ -29,5 +29,5 @@ for jar in `ls ${TARGET_DIR}/dependency/*.jar`; do
 done
 
 CMD="java $D_VARS -cp $CP $CLASS"
-echo $CMD
+#echo $CMD
 eval $CMD

@@ -53,5 +53,9 @@
         <versioning
                 enabled="true"
                 versioningScheme="SIMPLE"/>
+        <customInterceptors>
+            <interceptor index="0" class="org.infinispan.distribution.wrappers.CustomStatsInterceptor" />
+            <!--interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" /-->
+        </customInterceptors>
     </default>
 </infinispan>
