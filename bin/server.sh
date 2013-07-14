@@ -24,6 +24,17 @@ D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/log4j.properties"
 #Jprofiler
 #JP_AGENT="-agentpath:/opt/jprofiler/bin/linux-x64/libjprofilerti.so"
 
+#JVM tunning
+JVM="-Xmx2G -Xms1G"
+#JVM="$JVM -XX:SurvivorRatio=6"
+#JVM="$JVM -XX:NewSize=512m"
+#JVM="$JVM -XX:MaxNewSize=1G"
+#JVM="$JVM -XX:MaxPermSize=64m"
+#JVM="$JVM -XX:NewRatio=2"
+#JVM="$JVM -XX:+UseConcMarkSweepGC"
+#JVM="$JVM -XX:+CMSIncrementalMode"
+#JVM="$JVM -XX:+UseParNewGC"
+
 #class path
 CP="$TARGET_DIR/fenix-framework-app-1.0.jar"
 
@@ -31,6 +42,6 @@ for jar in `ls ${TARGET_DIR}/dependency/*.jar`; do
     CP="$CP:$jar";
 done
 
-CMD="java $JP_AGENT $D_VARS -cp $CP $CLASS"
+CMD="java $JVM $JP_AGENT $D_VARS -cp $CP $CLASS"
 #echo $CMD
 eval $CMD
