@@ -17,9 +17,9 @@
     </global>
     <default>
         <locking
-                isolationLevel="REPEATABLE_READ"
+                isolationLevel="SERIALIZABLE"
                 concurrencyLevel="32"
-                writeSkewCheck="true"
+                writeSkewCheck="false"
                 useLockStriping="false"
                 lockAcquisitionTimeout="10000"/>
         <jmxStatistics
@@ -52,7 +52,7 @@
         </clustering>
         <versioning
                 enabled="true"
-                versioningScheme="SIMPLE"/>
+                versioningScheme="GMU"/>
         <customInterceptors>
             <interceptor index="0" class="org.infinispan.distribution.wrappers.CustomStatsInterceptor" />
             <interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" />

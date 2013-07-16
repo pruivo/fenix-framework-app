@@ -13,7 +13,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- PLEASE KEEP THIS LIST SORTED ALPHABETICALLY!!!  THANKS -->
-        <version.fenix-framework>2.9-cloudtm-SNAPSHOT</version.fenix-framework>
+        <version.fenix-framework>2.10-cloudtm-SNAPSHOT</version.fenix-framework>
         <version.log4j>1.2.17</version.log4j>
         <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
         <version.maven.dependency-plugin>2.6</version.maven.dependency-plugin>
