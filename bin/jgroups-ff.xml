@@ -6,6 +6,7 @@
             mcast_addr="${jgroups.udp.mcast_addr:224.0.0.2}"
             mcast_port="${jgroups.udp.mcast_port:46655}"
             tos="8"
+            ip_mcast="true"
             ucast_recv_buf_size="20m"
             ucast_send_buf_size="640k"
             mcast_recv_buf_size="25m"
@@ -34,7 +35,12 @@
             oob_thread_pool.queue_max_size="100"
             oob_thread_pool.rejection_policy="discard"
             />
-
+    <!--TCPGOSSIP
+            initial_hosts="10.100.0.1[40000]"
+            timeout="2000"
+            num_initial_members="1"
+            break_on_coord_rsp="true"
+            /-->
     <PING
             timeout="100"
             num_initial_members="1"
@@ -64,8 +70,6 @@
             max_bundling_time="500"
             view_bundling="true"
             />
-    <SEQUENCER/>
-    <tom.TOA/>
     <UFC
             max_credits="5m"
             min_threshold="0.20"

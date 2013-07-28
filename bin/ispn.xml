@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <infinispan xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="urn:infinispan:config:5.2 http://www.infinispan.org/schemas/infinispan-config-5.2.xsd"
+            xsi:schemaLocation="urn:infinispan:config:5.2 file://schemas/infinispan-config-5.2.xsd"
             xmlns="urn:infinispan:config:5.2">
     <global>
         <globalJmxStatistics
@@ -11,7 +11,7 @@
             <properties>
                 <property
                         name="configurationFile"
-                        value="jgroups.xml"/>
+                        value="jgroups-ispn.xml"/>
             </properties>
         </transport>
     </global>
@@ -21,11 +21,11 @@
                 concurrencyLevel="32"
                 writeSkewCheck="false"
                 useLockStriping="false"
-                lockAcquisitionTimeout="10000"/>
+                lockAcquisitionTimeout="250"/>
         <jmxStatistics
                 enabled="true"/>
         <deadlockDetection
-                enabled="true"/>
+                enabled="false"/>
         <transaction
                 transactionManagerLookupClass="org.infinispan.transaction.lookup.GenericTransactionManagerLookup"
                 useEagerLocking="false"
@@ -33,7 +33,7 @@
                 syncRollbackPhase="false"
                 cacheStopTimeout="30000"
                 useSynchronization="false"
-                syncCommitPhase="false"
+                syncCommitPhase="true"
                 lockingMode="OPTIMISTIC"
                 eagerLockSingleNode="false"
                 use1PcForAutoCommitTransactions="false"
@@ -42,11 +42,11 @@
         </transaction>
         <clustering mode="d">
             <hash
-                    numOwners="1" />
+                    numOwners="3" />
             <sync
                     replTimeout="15000"/>
             <stateTransfer
-                    fetchInMemoryState="true"
+                    fetchInMemoryState="false"
                     chunkSize="100"
                     timeout="240000"/>
         </clustering>
@@ -55,7 +55,7 @@
                 versioningScheme="GMU"/>
         <customInterceptors>
             <interceptor index="0" class="org.infinispan.distribution.wrappers.CustomStatsInterceptor" />
-            <interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" />
+            <!--interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" /-->
         </customInterceptors>
     </default>
 </infinispan>

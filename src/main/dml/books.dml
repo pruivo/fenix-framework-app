@@ -15,6 +15,27 @@ class Author {
     int age;
 }
 
+class Comment {
+    int likes;
+    String text;
+}
+
+class Application {
+    boolean populated;
+}
+
+relation DRHasApplication {
+    .pt.ist.fenixframework.DomainRoot playsRole;
+    Application playsRole application;
+}
+
+relation BooksHasComments {
+    Book playsRole book;
+    Comment playsRole comments {
+        multiplicity *;
+    }
+}
+
 relation DRWithBooks {
     .pt.ist.fenixframework.DomainRoot playsRole parent;
     Book playsRole theBooks {

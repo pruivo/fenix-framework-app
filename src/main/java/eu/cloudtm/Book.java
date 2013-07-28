@@ -21,6 +21,15 @@ public class Book extends Book_Base {
         return "Book " + getId();
     }
 
+    public final Comment comment(String text) {
+        if (text == null) {
+            return null;
+        }
+        Comment comment = new Comment(getLocalityHints(), this, text);
+        addComments(comment);
+        return comment;
+    }
+
     public static Book createBookGroupedById(int id, double price) {
         LocalityHints localityHints = new LocalityHints();
         localityHints.addHint(Constants.GROUP_ID, String.valueOf(id));
