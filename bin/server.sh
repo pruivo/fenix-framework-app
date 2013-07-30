@@ -53,6 +53,6 @@ for jar in `ls ${TARGET_DIR}/dependency/*.jar`; do
     CP="$CP:$jar";
 done
 
-CMD="java $JVM $JP_AGENT $D_VARS -cp $CP $CLASS"
+CMD="java $JVM $JP_AGENT $D_VARS -cp $CP $CLASS $*"
 #echo $CMD
 eval $CMD

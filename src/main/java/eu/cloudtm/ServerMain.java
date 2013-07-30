@@ -1,13 +1,16 @@
 package eu.cloudtm;
 
-import eu.cloudtm.action.*;
+import eu.cloudtm.action.Action;
+import eu.cloudtm.action.ActionManager;
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.DomainRoot;
 import pt.ist.fenixframework.FenixFramework;
 import pt.ist.fenixframework.messaging.RequestProcessor;
 
 import java.io.Console;
+import java.util.concurrent.TimeUnit;
 
 import static org.apache.log4j.Logger.getLogger;
 
@@ -17,18 +20,42 @@ import static org.apache.log4j.Logger.getLogger;
  */
 public class ServerMain {
 
+    public static final long HOUR = TimeUnit.HOURS.toMinutes(1);
     public static final int NUMBER_ELEMENTS = 600;
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     public static void main(String[] args) {
+        boolean wrapMode = false;
+        if (args != null) {
+            for (String s : args) {
+                if ("--server".equals(s)) {
+                    wrapMode = true;
+                    break;
+                }
+            }
+
+        }
         init();
         populateIfNeeded();
         ActionManager actionManager = new ActionManager();
         FenixFramework.registerReceiver(new Worker(actionManager));
-        Console console = System.console();
-        console.printf("Press enter to finish server... %s", LINE_SEPARATOR).flush();
-        console.readLine();
-        console.printf("Enter pressed! shutting down...%s", LINE_SEPARATOR).flush();
+        if (wrapMode) {
+            System.out.println("Server mode started!");
+            while (true) {
+                try {
+                    Thread.sleep(HOUR);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        } else {
+            Console console = System.console();
+            console.printf("Press enter to finish server... %s", LINE_SEPARATOR).flush();
+            console.readLine();
+            console.printf("Enter pressed! shutting down...%s", LINE_SEPARATOR).flush();
+        }
+        System.out.println("Exiting...");
         FenixFramework.shutdown();
         System.exit(0);
     }
@@ -38,12 +65,17 @@ public class ServerMain {
             return;
         }
         //a little hack to make the populate faster
-        Level old = getLogger("pt.ist.fenixframework").getLevel();
-        getLogger("pt.ist.fenixframework").setLevel(Level.ERROR);
+        Logger ffLogger = getLogger("pt.ist.fenixframework");
+        Logger ispnLogger = getLogger("org.infinispan");
+        Level oldFFLevel = ffLogger.getLevel();
+        Level oldISPNLevel = ispnLogger.getLevel();
+        ffLogger.setLevel(Level.ERROR);
+        ispnLogger.setLevel(Level.ERROR);
         populateAuthors();
         populateBooks();
         populatePublishers();
-        getLogger("pt.ist.fenixframework").setLevel(old);
+        ispnLogger.setLevel(oldISPNLevel);
+        ffLogger.setLevel(oldFFLevel);
     }
 
     @Atomic
