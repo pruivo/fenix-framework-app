@@ -50,6 +50,11 @@
                     chunkSize="100"
                     timeout="240000"/>
         </clustering>
+        <dataPlacement
+                enabled="true"
+                objectLookupFactory="org.infinispan.dataplacement.hm.HashMapObjectLookupFactory"
+                maxNumberOfKeysToRequest="1000">
+        </dataPlacement>
         <versioning
                 enabled="true"
                 versioningScheme="GMU"/>
