@@ -1,7 +1,6 @@
 package eu.cloudtm.action;
 
 import eu.cloudtm.Book;
-import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.FenixFramework;
 
 /**
@@ -18,23 +17,22 @@ public class SetPriceAction extends AbstractRemoteAction {
         this.price = price;
     }
 
-    @Atomic
-    @Override
-    public final String executeRemote() throws Exception {
-        Book book = FenixFramework.getDomainRoot().getTheBooksById(id);
-        if (book == null) {
-            return "book(" + id + ") not found!";
-        }
-        book.setPrice(price);
-        return "book(" + id + ").price=" + price;
-    }
-
     @Override
     public final String toString() {
         return "SetPriceAction{" +
                 "id=" + id +
                 ", age=" + price +
                 '}';
+    }
+
+    @Override
+    protected final String executeTransaction() {
+        Book book = FenixFramework.getDomainRoot().getTheBooksById(id);
+        if (book == null) {
+            return "book(" + id + ") not found!";
+        }
+        book.setPrice(price);
+        return "book(" + id + ").price=" + price;
     }
 
     @Override
@@ -64,8 +62,8 @@ public class SetPriceAction extends AbstractRemoteAction {
             if (ID != actionId) {
                 return null;
             }
-            int id = Integer.parseInt(split[0]);
-            int age = Integer.parseInt(split[1]);
+            int id = Integer.parseInt(split[1]);
+            int age = Integer.parseInt(split[2]);
             return new SetPriceAction(id, age);
         }
 

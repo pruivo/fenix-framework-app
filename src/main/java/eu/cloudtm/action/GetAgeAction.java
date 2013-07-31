@@ -1,7 +1,6 @@
 package eu.cloudtm.action;
 
 import eu.cloudtm.Author;
-import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.FenixFramework;
 
 /**
@@ -16,21 +15,20 @@ public class GetAgeAction extends AbstractRemoteAction {
         this.id = id;
     }
 
-    @Atomic
-    @Override
-    public final String executeRemote() throws Exception {
-        Author author = FenixFramework.getDomainRoot().getTheAuthorsById(id);
-        if (author == null) {
-            return "author(" + id + ") not found!";
-        }
-        return "author(" + id + ").age=" + author.getAge();
-    }
-
     @Override
     public final String toString() {
         return "GetAgeAction{" +
                 "id=" + id +
                 '}';
+    }
+
+    @Override
+    protected final String executeTransaction() {
+        Author author = FenixFramework.getDomainRoot().getTheAuthorsById(id);
+        if (author == null) {
+            return "author(" + id + ") not found!";
+        }
+        return "author(" + id + ").age=" + author.getAge();
     }
 
     @Override
@@ -60,7 +58,7 @@ public class GetAgeAction extends AbstractRemoteAction {
             if (ID != actionId) {
                 return null;
             }
-            int id = Integer.parseInt(split[0]);
+            int id = Integer.parseInt(split[1]);
             return new GetAgeAction(id);
         }
 

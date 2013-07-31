@@ -31,6 +31,7 @@ public class ClientMain {
                 new AddAgentAction.AddAgentActionFactory(runningAgent, actionManager),
                 new RemoveAgentAction.RemoveAgentActionFactory(runningAgent),
                 new RemoveAllAgentsAction.RemoveAllAgentsActionFactory(runningAgent),
+                new PrintLocalityHintAction.PrintLocalityHintActionFactory(),
                 new ExitAction.ExitActionFactory(runningAgent, console));
         //noinspection InfiniteLoopStatement
         while (true) {

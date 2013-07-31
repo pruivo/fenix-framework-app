@@ -90,10 +90,13 @@
                 <executions>
                     <execution>
                         <id>copy</id>
-                        <phase>compile</phase>
+                        <phase>process-sources</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
+                        <configuration>
+                            <excludeScope>system</excludeScope>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

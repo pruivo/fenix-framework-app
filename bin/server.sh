@@ -27,10 +27,10 @@ D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr=$HOSTNAME"
 D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/log4j.properties"
 
 #jmx remote
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.authenticate=false"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.ssl=false"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.port=9999"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.authenticate=false"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.ssl=false"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.port=9999"
 
 #Jprofiler
 #JP_AGENT="-agentpath:/opt/jprofiler/bin/linux-x64/libjprofilerti.so"

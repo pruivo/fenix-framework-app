@@ -11,7 +11,12 @@ public class GetAuthorsInfoAction extends AbstractRemoteAction {
     private static final int ID = NEXT_ID.incrementAndGet();
 
     @Override
-    public String executeRemote() throws Exception {
+    public final String toString() {
+        return "GetAuthorsInfoAction{}";
+    }
+
+    @Override
+    protected final String executeTransaction() {
         int count = 0;
         int sum = 0;
         int min = 0;
@@ -32,11 +37,6 @@ public class GetAuthorsInfoAction extends AbstractRemoteAction {
         }
         return "number of authors=" + count + " (sum=" + sum + ", max=" + max + ", avg=" +
                 (count == 0 ? 0 : (sum * 1.0 / count) + ", min=" + min + ")");
-    }
-
-    @Override
-    public final String toString() {
-        return "GetAuthorsInfoAction{}";
     }
 
     @Override
