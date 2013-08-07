@@ -24,7 +24,7 @@ public class GetPriceAction extends AbstractRemoteAction {
 
     @Override
     protected final String executeTransaction() {
-        Book book = FenixFramework.getDomainRoot().getTheBooksById(id);
+        Book book = FenixFramework.getDomainRoot().getTheBooksByIdCached(false, id);
         if (book == null) {
             return "book(" + id + ") not found!";
         }

@@ -35,10 +35,9 @@ public class ServerMain {
             }
 
         }
+        FenixFramework.registerReceiver(new Worker(new ActionManager()));
         init();
         populateIfNeeded();
-        ActionManager actionManager = new ActionManager();
-        FenixFramework.registerReceiver(new Worker(actionManager));
         if (wrapMode) {
             System.out.println("Server mode started!");
             while (true) {

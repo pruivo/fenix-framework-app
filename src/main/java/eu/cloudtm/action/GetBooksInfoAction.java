@@ -22,7 +22,7 @@ public class GetBooksInfoAction extends AbstractRemoteAction {
         int min = 0;
         int max = 0;
         boolean first = true;
-        for (Book book : FenixFramework.getDomainRoot().getTheBooks()) {
+        for (Book book : FenixFramework.getDomainRoot().getTheBooksCached(false)) {
             int price = (int) book.getPrice();
             if (first) {
                 count = 1;

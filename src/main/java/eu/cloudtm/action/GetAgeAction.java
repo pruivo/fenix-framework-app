@@ -24,7 +24,7 @@ public class GetAgeAction extends AbstractRemoteAction {
 
     @Override
     protected final String executeTransaction() {
-        Author author = FenixFramework.getDomainRoot().getTheAuthorsById(id);
+        Author author = FenixFramework.getDomainRoot().getTheAuthorsByIdCached(false, id);
         if (author == null) {
             return "author(" + id + ") not found!";
         }

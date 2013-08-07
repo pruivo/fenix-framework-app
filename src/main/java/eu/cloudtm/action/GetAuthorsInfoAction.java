@@ -22,7 +22,7 @@ public class GetAuthorsInfoAction extends AbstractRemoteAction {
         int min = 0;
         int max = 0;
         boolean first = true;
-        for (Author author : FenixFramework.getDomainRoot().getTheAuthors()) {
+        for (Author author : FenixFramework.getDomainRoot().getTheAuthorsCached(false)) {
             int age = author.getAge();
             if (first) {
                 count = 1;

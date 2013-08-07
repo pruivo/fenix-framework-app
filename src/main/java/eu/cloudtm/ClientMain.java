@@ -42,7 +42,11 @@ public class ClientMain {
                 System.err.println("Unknown " + command);
                 continue;
             }
-            System.out.println(action.executeLocal());
+            try {
+                System.out.println(action.executeLocal());
+            } catch (Exception e) {
+                System.out.println(e.getLocalizedMessage());
+            }
         }
     }
 

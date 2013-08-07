@@ -17,7 +17,7 @@
     </global>
     <default>
         <locking
-                isolationLevel="SERIALIZABLE"
+                isolationLevel="REPEATABLE_READ"
                 concurrencyLevel="32"
                 writeSkewCheck="false"
                 useLockStriping="false"
@@ -46,7 +46,7 @@
             <sync
                     replTimeout="15000"/>
             <stateTransfer
-                    fetchInMemoryState="false"
+                    fetchInMemoryState="true"
                     chunkSize="100"
                     timeout="240000"/>
         </clustering>
@@ -55,9 +55,9 @@
                 objectLookupFactory="org.infinispan.dataplacement.hm.HashMapObjectLookupFactory"
                 maxNumberOfKeysToRequest="1000">
         </dataPlacement>
-        <versioning
+        <!--versioning
                 enabled="true"
-                versioningScheme="GMU"/>
+                versioningScheme="GMU"/-->
         <customInterceptors>
             <interceptor index="0" class="org.infinispan.distribution.wrappers.CustomStatsInterceptor" />
             <!--interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" /-->

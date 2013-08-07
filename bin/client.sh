@@ -23,13 +23,13 @@ HOSTNAME=$(hostname)
 D_VARS="$D_VARS -Djava.net.preferIPv4Stack=true -Djgroups.bind_addr=$HOSTNAME"
 
 #log4j
-D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/log4j.properties"
+D_VARS="$D_VARS -Dlog4j.configuration=file:$WORKING_DIR/client-log4j.properties"
 
 #jmx
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.authenticate=false"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.ssl=false"
-D_VARS="$D_VARS -Dcom.sun.management.jmxremote.port=9998"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.authenticate=false"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.ssl=false"
+#D_VARS="$D_VARS -Dcom.sun.management.jmxremote.port=9998"
 
 #class path
 CP="$TARGET_DIR/fenix-framework-app-1.0.jar:$WORKING_DIR"
