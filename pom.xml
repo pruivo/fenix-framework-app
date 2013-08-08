@@ -32,7 +32,8 @@
                     <codeGeneratorClassName>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator
                     </codeGeneratorClassName>
                     <params>
-                        <ptIstTxIntrospectorEnable>false</ptIstTxIntrospectorEnable>
+                        <ptIstTxIntrospectorEnable>true</ptIstTxIntrospectorEnable>
+                        <ptIstDapEnable>true</ptIstDapEnable>
                     </params>
                 </configuration>
                 <executions>
