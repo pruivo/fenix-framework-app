@@ -1,7 +1,8 @@
 package eu.cloudtm.action;
 
-import pt.ist.fenixframework.Atomic;
 import pt.ist.fenixframework.FenixFramework;
+
+import java.util.concurrent.Callable;
 
 /**
  * @author Pedro Ruivo
@@ -14,10 +15,15 @@ public abstract class AbstractRemoteAction implements Action {
         return String.valueOf(FenixFramework.sendRequest(toNetworkString(), localityHint(), "server", true));
     }
 
-    @Atomic
     @Override
     public final String executeRemote() throws Exception {
-        return executeTransaction();
+        return FenixFramework.getTransactionManager().withTransaction(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return executeTransaction();
+            }
+        }, getClass().getSimpleName());
+
     }
 
     protected abstract String executeTransaction();
