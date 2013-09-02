@@ -42,6 +42,7 @@
         </transaction>
         <clustering mode="d">
             <hash
+                    factory="org.infinispan.dataplacement.ch.LCRDConsistentHashFactory"
                     numOwners="3" />
             <sync
                     replTimeout="15000"/>

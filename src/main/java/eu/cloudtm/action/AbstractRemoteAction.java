@@ -12,7 +12,7 @@ public abstract class AbstractRemoteAction implements Action {
 
     @Override
     public final String executeLocal() throws Exception {
-        return String.valueOf(FenixFramework.sendRequest(toNetworkString(), localityHint(), "server", true));
+        return String.valueOf(FenixFramework.sendRequest(toNetworkString(), localityHint(), "server", true, isWrite()));
     }
 
     @Override
@@ -22,8 +22,12 @@ public abstract class AbstractRemoteAction implements Action {
             public String call() throws Exception {
                 return executeTransaction();
             }
-        }, getClass().getSimpleName());
+        }, transactionClass());
 
+    }
+
+    protected final String transactionClass() {
+        return getClass().getSimpleName();
     }
 
     protected abstract String executeTransaction();
@@ -31,4 +35,6 @@ public abstract class AbstractRemoteAction implements Action {
     protected abstract String toNetworkString();
 
     protected abstract String localityHint();
+
+    protected abstract boolean isWrite();
 }

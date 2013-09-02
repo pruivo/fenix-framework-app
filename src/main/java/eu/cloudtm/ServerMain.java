@@ -23,6 +23,7 @@ public class ServerMain {
     public static final long HOUR = TimeUnit.HOURS.toMinutes(1);
     public static final int NUMBER_ELEMENTS = 600;
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
+    public static final boolean USE_TX_CLASS = Boolean.getBoolean("useTxClass");
 
     public static void main(String[] args) {
         boolean wrapMode = false;

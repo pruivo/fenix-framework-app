@@ -1,6 +1,7 @@
 package eu.cloudtm.action;
 
 import eu.cloudtm.Book;
+import eu.cloudtm.ServerMain;
 import pt.ist.fenixframework.FenixFramework;
 
 /**
@@ -46,7 +47,12 @@ public class GetBooksInfoAction extends AbstractRemoteAction {
 
     @Override
     protected String localityHint() {
-        return null;
+        return ServerMain.USE_TX_CLASS ? transactionClass() : null;
+    }
+
+    @Override
+    protected boolean isWrite() {
+        return false;
     }
 
     public static class GetBooksInfoActionFactory implements ActionFactory {

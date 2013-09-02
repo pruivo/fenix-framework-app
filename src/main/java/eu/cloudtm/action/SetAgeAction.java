@@ -1,6 +1,7 @@
 package eu.cloudtm.action;
 
 import eu.cloudtm.Author;
+import eu.cloudtm.ServerMain;
 import pt.ist.fenixframework.FenixFramework;
 
 /**
@@ -42,7 +43,12 @@ public class SetAgeAction extends AbstractRemoteAction {
 
     @Override
     protected final String localityHint() {
-        return Integer.toString(id);
+        return ServerMain.USE_TX_CLASS ? transactionClass() : Integer.toString(id);
+    }
+
+    @Override
+    protected boolean isWrite() {
+        return true;
     }
 
     public static class SetAgeActionFactory implements ActionFactory {
